@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Firstweek-lessonfirst</string>
+    <string name="search">Поиск</string>
+    <string name="typographyTextExample">The quick brown fox jumps over the lazy dog</string>
+    <string name="headingFirst">Heading 1</string>
+    <string name="headingSecond">Heading 2</string>
+    <string name="subheadingFirst">Subheading 1</string>
+    <string name="subheadingSecond">Subheading 2</string>
+    <string name="bodyTextFirst">Body Text 1</string>
+    <string name="bodyTextSecond">Body Text 2</string>
+    <string name="metadataFirst">Metadata 1</string>
+    <string name="metadataSecond">Metadata 2</string>
+    <string name="metadataThird">Metadata 3</string>
+    <string name="sfProDisplayForHeadingFirst">SF Pro Display/32/Bold</string>
+    <string name="sfProDisplayForHeadingSecond">SF Pro Display/24/Bold</string>
+    <string name="sfProDisplayForSubheadingFirst">SF Pro Display/18/SemiBold</string>
+    <string name="sfProDisplayForSubheadingSecond">SF Pro Display/16/SemiBold</string>
+    <string name="sfProDisplayForBodyTextFirst">SF Pro Display/14/SemiBold</string>
+    <string name="sfProDisplayForBodyTextSecond">SF Pro Display/14/Regular</string>
+    <string name="sfProDisplayForMetadataFirst">SF Pro Display/12/Regular</string>
+    <string name="sfProDisplayForMetadataSecond">SF Pro Display/10/Regular</string>
+    <string name="sfProDisplayForMetadataThird">SF Pro Display/10/SemiBold</string>
+</resources>
