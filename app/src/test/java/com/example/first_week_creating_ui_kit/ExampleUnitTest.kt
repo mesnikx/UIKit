@@ -1,4 +1,4 @@
-package com.example.firstweek_lessonfirst
+package com.example.first_week_creating_ui_kit
 
 import org.junit.Test
 
