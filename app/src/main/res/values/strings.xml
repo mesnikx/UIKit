@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">First week ui kit</string>
+    <string name="search">Поиск</string>
+    <string name="avatar">Avatar</string>
 </resources>

@@ -10,7 +10,8 @@ data class Dimens(
     val paddingSmall: Dp,
     val paddingMedium: Dp,
     val paddingLarge: Dp,
-    val paddingXLarge: Dp
+    val paddingXLarge: Dp,
+    val searchBarHeight: Dp
 )
 
 internal val dimensions = Dimens(
@@ -18,5 +19,6 @@ internal val dimensions = Dimens(
     paddingSmall = 4.dp,
     paddingMedium = 8.dp,
     paddingLarge = 16.dp,
-    paddingXLarge = 24.dp
+    paddingXLarge = 24.dp,
+    searchBarHeight = 36.dp
 )
