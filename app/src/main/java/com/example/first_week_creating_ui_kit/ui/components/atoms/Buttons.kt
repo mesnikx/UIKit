@@ -1,4 +1,4 @@
-package com.example.first_week_creating_ui_kit.ui.components
+package com.example.first_week_creating_ui_kit.ui.components.atoms
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -15,12 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.first_week_creating_ui_kit.ui.theme.AppTheme
+import com.example.firstweek_lessonfirst.R
 
 sealed interface ButtonType {
     data object Primary : ButtonType
@@ -31,16 +32,11 @@ sealed interface ButtonType {
 @Composable
 fun CustomButton(
     modifier: Modifier = Modifier,
-    text: String,
-    onClick: () -> Unit,
+    text: String = stringResource(id = R.string.button),
+    onClick: () -> Unit = {},
     isEnabled: Boolean = true,
     shape: Shape = RoundedCornerShape(30.dp),
     type: ButtonType = ButtonType.Primary,
-    backgroundColor: Color = AppTheme.colors.brandColorDefault,
-    contentColor: Color = AppTheme.colors.neutralColorBackground,
-    rippleColor: Color = AppTheme.colors.brandColorDarkOnPressed,
-    disabledContainerColor: Color = AppTheme.colors.brandColorDefault.copy(alpha = 0.5f),
-    disabledContentColor: Color = AppTheme.colors.neutralColorSecondaryBackground
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -51,14 +47,15 @@ fun CustomButton(
                 onClick = onClick,
                 enabled = isEnabled,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (isPressed) rippleColor else backgroundColor,
-                    contentColor = contentColor,
-                    disabledContainerColor = disabledContainerColor,
-                    disabledContentColor = disabledContentColor
+                    containerColor = if (isPressed) AppTheme.colors.brandColorDarkOnPressed
+                    else AppTheme.colors.brandColorDefault,
+                    contentColor = AppTheme.colors.neutralColorBackground,
+                    disabledContainerColor = AppTheme.colors.brandColorDefault.copy(alpha = 0.5f),
+                    disabledContentColor = AppTheme.colors.neutralColorSecondaryBackground
                 ),
                 shape = shape,
                 modifier = modifier
-                    .padding(AppTheme.dimens.paddingMedium),
+                    .padding(AppTheme.dimens.padding8dp),
             ) {
                 Text(
                     text,
@@ -73,18 +70,21 @@ fun CustomButton(
                 onClick = onClick,
                 enabled = isEnabled,
                 colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = if (isPressed) rippleColor else backgroundColor,
-                    disabledContentColor = disabledContainerColor,
+                    contentColor = if (isPressed) AppTheme.colors.brandColorDarkOnPressed
+                    else AppTheme.colors.brandColorDefault,
+                    disabledContentColor = AppTheme.colors.brandColorDefault.copy(alpha = 0.5f),
 
                     ),
                 border = BorderStroke(
                     2.dp,
-                    if (!isEnabled) disabledContainerColor else if (isPressed) rippleColor else backgroundColor,
+                    if (!isEnabled) AppTheme.colors.brandColorDefault.copy(alpha = 0.5f)
+                    else if (isPressed) AppTheme.colors.brandColorDarkOnPressed
+                    else AppTheme.colors.brandColorDefault,
                 ),
                 shape = shape,
                 interactionSource = interactionSource,
                 modifier = modifier
-                    .padding(AppTheme.dimens.paddingMedium)
+                    .padding(AppTheme.dimens.padding8dp)
             ) {
                 Text(
                     text,
@@ -99,13 +99,14 @@ fun CustomButton(
                 onClick = onClick,
                 enabled = isEnabled,
                 colors = ButtonDefaults.textButtonColors(
-                    contentColor = if (isPressed) rippleColor else backgroundColor,
-                    disabledContentColor = disabledContainerColor
+                    contentColor = if (isPressed) AppTheme.colors.brandColorDarkOnPressed
+                    else AppTheme.colors.brandColorDefault,
+                    disabledContentColor = AppTheme.colors.brandColorDefault.copy(alpha = 0.5f)
                 ),
                 shape = shape,
                 interactionSource = interactionSource,
                 modifier = modifier
-                    .padding(AppTheme.dimens.paddingMedium)
+                    .padding(AppTheme.dimens.padding8dp)
 
             ) {
                 Text(
@@ -122,46 +123,35 @@ fun CustomButton(
 fun MyApp() {
     Column(modifier = Modifier.padding(16.dp)) {
         CustomButton(
-            text = "Button",
-            onClick = { /*TODO*/ },
             type = ButtonType.Primary,
             isEnabled = true,
             modifier = Modifier
         )
 
         CustomButton(
-            text = "Button",
-            onClick = { /*TODO*/ },
             type = ButtonType.Secondary,
             isEnabled = true,
             modifier = Modifier
         )
 
         CustomButton(
-            text = "Button",
-            onClick = { /*TODO*/ },
             type = ButtonType.Ghost,
             isEnabled = true,
             modifier = Modifier
         )
 
         CustomButton(
-            text = "Button",
-            onClick = { /*TODO*/ },
+
             type = ButtonType.Primary,
             isEnabled = false,
             modifier = Modifier
         )
         CustomButton(
-            text = "Button",
-            onClick = { /*TODO*/ },
             type = ButtonType.Secondary,
             isEnabled = false,
             modifier = Modifier
         )
         CustomButton(
-            text = "Button",
-            onClick = { /*TODO*/ },
             type = ButtonType.Ghost,
             isEnabled = false,
             modifier = Modifier

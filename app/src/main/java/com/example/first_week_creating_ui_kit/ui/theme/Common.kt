@@ -25,7 +25,7 @@ data class Colors(
     val accentSafe: Color,
     val gradient1: Brush,
     val gradient2: Brush,
-
+    val gradientColorBackground: Color
     )
 
 enum class ColorStyle() {

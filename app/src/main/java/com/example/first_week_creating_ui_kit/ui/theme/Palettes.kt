@@ -19,5 +19,6 @@ internal val baseLightPalette = Colors(
     accentSuccess = AccentSuccess,
     accentSafe = AccentSafe,
     gradient1 = Gradient1,
-    gradient2 = Gradient2
+    gradient2 = Gradient2,
+    gradientColorBackground = GradientColorBackground
 )

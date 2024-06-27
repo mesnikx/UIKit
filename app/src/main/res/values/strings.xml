@@ -2,4 +2,7 @@
     <string name="app_name">First week ui kit</string>
     <string name="search">Поиск</string>
     <string name="avatar">Avatar</string>
+    <string name="button">Button</string>
+    <string name="linePeople">Будь первым</string>
+    <string name="numberOfSubs"> человек</string>
 </resources>

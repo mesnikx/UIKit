@@ -1,4 +1,4 @@
-package com.example.first_week_creating_ui_kit.ui.components
+package com.example.first_week_creating_ui_kit.ui.components.atoms
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -32,18 +31,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.first_week_creating_ui_kit.ui.theme.AppTheme
 import com.example.firstweek_lessonfirst.R
 
 @Composable
 fun CustomSearchBar(
-    hint: String,
     modifier: Modifier = Modifier,
-    isEnabled: Boolean = true,
-    height: Dp = AppTheme.dimens.searchBarHeight,
-    elevation: Dp = AppTheme.dimens.paddingSmall,
-    cornerShape: Shape = RoundedCornerShape(AppTheme.dimens.paddingSmall),
-    backgroundColor: Color = AppTheme.colors.neutralColorBackground,
+    hint: String = stringResource(id = R.string.search),
+    height: Dp = 36.dp,
     onSearchClicked: () -> Unit = {},
     onTextChange: (String) -> Unit = {}
 ) {
@@ -52,9 +48,14 @@ fun CustomSearchBar(
         modifier = Modifier
             .height(height)
             .fillMaxWidth()
-            .shadow(elevation = elevation, shape = cornerShape)
-            .background(color = backgroundColor, shape = cornerShape)
-            .clickable { onSearchClicked },
+            .shadow(
+                elevation = AppTheme.dimens.padding4dp,
+                shape = RoundedCornerShape(AppTheme.dimens.padding4dp)
+            )
+            .background(
+                color = AppTheme.colors.neutralColorBackground,
+                shape = RoundedCornerShape(AppTheme.dimens.padding4dp)
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
@@ -73,7 +74,7 @@ fun CustomSearchBar(
                 Icon(
                     modifier = modifier
                         .fillMaxSize()
-                        .padding(AppTheme.dimens.paddingMedium),
+                        .padding(AppTheme.dimens.padding8dp),
                     painter = painterResource(id = R.drawable.ic_search),
                     contentDescription = stringResource(id = R.string.search),
                     tint = AppTheme.colors.neutralColorFont
@@ -82,7 +83,7 @@ fun CustomSearchBar(
                 Icon(
                     modifier = modifier
                         .fillMaxSize()
-                        .padding(AppTheme.dimens.paddingMedium),
+                        .padding(AppTheme.dimens.padding8dp),
                     painter = painterResource(id = R.drawable.ic_search),
                     contentDescription = stringResource(R.string.search),
                     tint = AppTheme.colors.neutralColorDisabled
@@ -98,7 +99,7 @@ fun CustomSearchBar(
                 text = it
                 onTextChange(it.text)
             },
-            enabled = isEnabled,
+            enabled = true,
             textStyle = AppTheme.typo.bodyText1,
             decorationBox = { innerTextField ->
                 if (text.text.isEmpty()) {
@@ -123,5 +124,5 @@ fun CustomSearchBar(
 @Preview(showBackground = true)
 @Composable
 fun SearchBarPreview() {
-    CustomSearchBar(hint = "Поиск", modifier = Modifier)
+    CustomSearchBar(modifier = Modifier)
 }
