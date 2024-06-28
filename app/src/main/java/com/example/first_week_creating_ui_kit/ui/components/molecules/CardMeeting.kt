@@ -24,6 +24,7 @@ fun CardMeeting(
     modifier: Modifier = Modifier,
     title: String,
     imageUrl: String? = null,
+    chips: List<String> = listOf("Python", "Moscow", "Junior"),
     dateAndPlace: String,
     onCLick: () -> Unit = {},
 ) {
@@ -42,26 +43,15 @@ fun CardMeeting(
             .fillMaxWidth()
     ) {
         Row {
-            if (imageUrl != null) {
-                CustomAvatar(
-                    type = AvatarType.AvatarMeeting,
-                    model = imageUrl,
-                    size = 48.dp,
-                    modifier = Modifier.padding(
-                        bottom = AppTheme.dimens.padding20dp,
-                        end = AppTheme.dimens.padding12dp
-                    )
+            CustomAvatar(
+                type = AvatarType.AvatarMeeting,
+                imageUri = imageUrl,
+                size = 48.dp,
+                modifier = Modifier.padding(
+                    bottom = AppTheme.dimens.padding20dp,
+                    end = AppTheme.dimens.padding12dp
                 )
-            } else {
-                CustomAvatar(
-                    type = AvatarType.AvatarMeeting,
-                    size = 48.dp,
-                    modifier = Modifier.padding(
-                        bottom = AppTheme.dimens.padding20dp,
-                        end = AppTheme.dimens.padding12dp
-                    )
-                )
-            }
+            )
             Column {
                 Text(
                     text = title,
@@ -76,18 +66,12 @@ fun CardMeeting(
                     modifier = Modifier.fillMaxWidth()
                 )
                 Row(modifier = Modifier.padding(top = AppTheme.dimens.padding4dp)) {
-                    CustomChip(
-                        text = "Python",
-                        modifier = Modifier.padding(end = AppTheme.dimens.padding4dp)
-                    )
-                    CustomChip(
-                        text = "Moscow",
-                        modifier = Modifier.padding(end = AppTheme.dimens.padding4dp)
-                    )
-                    CustomChip(
-                        text = "Junior",
-                        modifier = Modifier.padding(end = AppTheme.dimens.padding4dp)
-                    )
+                    chips.forEach { name ->
+                        CustomChip(
+                            text = name,
+                            modifier = Modifier.padding(end = AppTheme.dimens.padding4dp)
+                        )
+                    }
                 }
             }
         }
@@ -127,6 +111,7 @@ fun ShowCardMeeting() {
             title = "Mobius Fall",
             dateAndPlace = "20.11.2024",
             modifier = Modifier.padding(AppTheme.dimens.padding4dp),
+            chips = listOf("C++", "Kazan"),
             imageUrl = "https://sun9-57.userapi.com/impg/Umm90jen_qIn5iswC26Eg5B_WK3A1FhY5j3npA/8YSlbgn5oIo.jpg?size=600x600&quality=95&sign=7d019a27e80fa0c004065b3bcde32cea&type=album"
         )
         CardMeeting(

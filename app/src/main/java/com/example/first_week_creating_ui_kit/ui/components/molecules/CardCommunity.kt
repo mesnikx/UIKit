@@ -18,9 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.example.first_week_creating_ui_kit.ui.components.atoms.AvatarType
 import com.example.first_week_creating_ui_kit.ui.components.atoms.CustomAvatar
 import com.example.first_week_creating_ui_kit.ui.theme.AppTheme
+import com.example.first_week_creating_ui_kit.ui.utils.toFormattedString
 import com.example.firstweek_lessonfirst.R
-import java.text.NumberFormat
-import java.util.Locale
 
 @Composable
 fun CardCommunity(
@@ -45,26 +44,15 @@ fun CardCommunity(
             .fillMaxWidth()
     ) {
         Row {
-            if (imageUrl != null) {
-                CustomAvatar(
-                    type = AvatarType.AvatarMeeting,
-                    model = imageUrl,
-                    size = 48.dp,
-                    modifier = Modifier.padding(
-                        bottom = AppTheme.dimens.padding12dp,
-                        end = AppTheme.dimens.padding12dp
-                    )
+            CustomAvatar(
+                type = AvatarType.AvatarMeeting,
+                imageUri = imageUrl,
+                size = 48.dp,
+                modifier = Modifier.padding(
+                    bottom = AppTheme.dimens.padding12dp,
+                    end = AppTheme.dimens.padding12dp
                 )
-            } else {
-                CustomAvatar(
-                    type = AvatarType.AvatarMeeting,
-                    size = 48.dp,
-                    modifier = Modifier.padding(
-                        bottom = AppTheme.dimens.padding12dp,
-                        end = AppTheme.dimens.padding12dp
-                    )
-                )
-            }
+            )
             Column {
                 Text(
                     text = title,
@@ -73,9 +61,7 @@ fun CardCommunity(
                     modifier = Modifier.fillMaxWidth()
                 )
                 Text(
-                    text = NumberFormat.getNumberInstance(Locale.getDefault())
-                        .format(numberOfSubs) + " " +
-                            stringResource(id = R.string.numberOfSubs),
+                    text = "${numberOfSubs.toFormattedString()} ${stringResource(id = R.string.numberOfSubs)}",
                     style = AppTheme.typo.metadata1,
                     color = AppTheme.colors.neutralColorSecondaryText,
                     modifier = Modifier.fillMaxWidth()

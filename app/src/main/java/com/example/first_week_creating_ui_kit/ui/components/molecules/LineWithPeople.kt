@@ -48,7 +48,7 @@ fun LineWithPeople(
                         } else {
                             CustomAvatar(
                                 type = AvatarType.AvatarMeeting,
-                                model = avatar,
+                                imageUri = avatar,
                                 isEditable = false,
                                 haveBorder = true,
                                 size = size

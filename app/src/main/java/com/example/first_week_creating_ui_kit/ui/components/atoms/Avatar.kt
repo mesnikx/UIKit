@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.bumptech.glide.request.RequestOptions
 import com.example.first_week_creating_ui_kit.ui.theme.AppTheme
 import com.example.firstweek_lessonfirst.R
 
@@ -36,9 +37,9 @@ sealed interface AvatarType {
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun CustomAvatar(
-    modifier: Modifier = Modifier,
-    model: String? = null,
     type: AvatarType,
+    modifier: Modifier = Modifier,
+    imageUri: String? = null,
     onClick: () -> Unit = {},
     isEditable: Boolean = false,
     haveBorder: Boolean = false,
@@ -59,7 +60,7 @@ fun CustomAvatar(
                         .clip(CircleShape)
                         .background(AppTheme.colors.neutralColorBackground)
                 ) {
-                    if (model == null) {
+                    if (imageUri == null) {
                         Image(
                             modifier = Modifier
                                 .align(Alignment.Center)
@@ -70,7 +71,7 @@ fun CustomAvatar(
                         )
                     } else {
                         GlideImage(
-                            model = model,
+                            model = imageUri,
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .fillMaxSize(),
@@ -92,6 +93,7 @@ fun CustomAvatar(
                         Icon(
                             painter = painterResource(R.drawable.ic_add),
                             contentDescription = stringResource(R.string.avatar),
+                            tint = AppTheme.colors.neutralColorFont
                         )
                     }
                 }
@@ -106,37 +108,18 @@ fun CustomAvatar(
                         .background(Color.Transparent)
                         .clip(RoundedCornerShape(AppTheme.dimens.padding16dp))
                 ) {
-                    if (haveBorder && model != null) {
+                    if (imageUri != null) {
                         GlideImage(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(AppTheme.dimens.padding16dp))
-                                .border(
-                                    width = AppTheme.dimens.padding2dp,
-                                    shape = RoundedCornerShape(AppTheme.dimens.padding16dp),
-                                    color = AppTheme.colors.gradientColorBackground
+                                .then(
+                                    if (haveBorder) Modifier.border(
+                                        width = AppTheme.dimens.padding2dp,
+                                        shape = RoundedCornerShape(AppTheme.dimens.padding16dp),
+                                        color = AppTheme.colors.gradientColorBackground
+                                    ) else Modifier
                                 ),
-                            model = model,
-                            contentDescription = stringResource(R.string.avatar),
-                            contentScale = ContentScale.Crop
-                        )
-                    } else if (haveBorder) {
-                        Image(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(AppTheme.dimens.padding16dp))
-                                .border(
-                                    width = AppTheme.dimens.padding2dp,
-                                    shape = RoundedCornerShape(AppTheme.dimens.padding16dp),
-                                    color = AppTheme.colors.gradientColorBackground
-                                ),
-                            painter = painterResource(R.drawable.ava_orange),
-                            contentDescription = stringResource(R.string.avatar),
-                            contentScale = ContentScale.Crop
-                        )
-                    } else if (model != null) {
-                        GlideImage(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(AppTheme.dimens.padding16dp)),
-                            model = model,
+                            model = imageUri,
                             contentDescription = stringResource(R.string.avatar),
                             contentScale = ContentScale.Crop
                         )
@@ -149,21 +132,24 @@ fun CustomAvatar(
                             contentScale = ContentScale.Crop
                         )
                     }
-                }
-                if (isEditable) {
-                    IconButton(
-                        onClick = onClick,
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .fillMaxSize(0.24f)
-                    ) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_add),
-                            contentDescription = stringResource(R.string.avatar),
-                        )
+                    if (isEditable) {
+                        IconButton(
+                            onClick = onClick,
+                            modifier = Modifier
+                                .align(Alignment.BottomEnd)
+                                .fillMaxSize(0.24f)
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_add),
+                                contentDescription = stringResource(R.string.avatar),
+                                tint = AppTheme.colors.neutralColorFont
+                            )
+                        }
                     }
                 }
             }
+
+
         }
     }
 }
@@ -182,14 +168,13 @@ fun MyApp2() {
             type = AvatarType.AvatarMeeting,
             isEditable = false,
             haveBorder = false,
-            model = "https://s3-alpha-sig.figma.com/img/dff3/9826/1c3f407d0c7ff3bc9e52078ef2bbe372?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ixubgoFoApar0JMy0N-jyRYUNcccwpsMO6DfOupFKplRENmVSd2ztCq-uMrjhaZ6wF1khvzzczktUmrox4xfbbCFlWLyXT81X0grbZzpvcKXDfq9ZWclg41rR46lGxNBh7LQ7MUVCblUPi7lsFuKTFrmCJV45cD7IaJSTMWgXVYfpwDbIfD2iF7NFCRG91CiRbJniYdDLj3F-svumPts6t6okn4nJ1DAbtytTYwe8JTLvtCvKiPHMWQWr0uYy4vESfieeZguH7gmgPqvHxbOvqspkLipJpHrS65QeN-suGl5oZNObXDITp6flRaD-8XvFHMEU96aPDbCbBMMs6rDeA__",
             modifier = Modifier
                 .padding(bottom = AppTheme.dimens.padding16dp)
         )
 
         CustomAvatar(
             type = AvatarType.AvatarProfile,
-            model = "https://avatars.dzeninfra.ru/get-zen_doc/1592433/pub_613232f67916e7006acd81cc_613238bd39f2cf24c3cb3303/scale_1200",
+            imageUri = "https://avatars.dzeninfra.ru/get-zen_doc/1592433/pub_613232f67916e7006acd81cc_613238bd39f2cf24c3cb3303/scale_1200",
             isEditable = true,
             modifier = Modifier
                 .padding(bottom = AppTheme.dimens.padding16dp)
