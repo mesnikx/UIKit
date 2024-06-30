@@ -5,4 +5,5 @@
     <string name="button">Button</string>
     <string name="linePeople">Будь первым</string>
     <string name="numberOfSubs"> человек</string>
+    <string name="meetingIsOver">Закончилась</string>
 </resources>
