@@ -22,5 +22,5 @@ internal val dimensions = Dimens(
     padding12dp = 12.dp,
     padding16dp = 16.dp,
     padding20dp = 20.dp,
-    padding24dp = 24.dp
+    padding24dp = 24.dp,
 )

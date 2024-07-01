@@ -13,7 +13,6 @@ private val SFDisplayPro = FontFamily(
     Font(R.font.sf_semibold, FontWeight.SemiBold),
     Font(R.font.sf_bold, FontWeight.Bold)
 )
-
 object AppTypo {
     val h1 = TextStyle(
         fontFamily = SFDisplayPro,

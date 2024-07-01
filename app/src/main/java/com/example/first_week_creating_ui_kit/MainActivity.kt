@@ -3,6 +3,7 @@ package com.example.first_week_creating_ui_kit
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.example.first_week_creating_ui_kit.navigation.RootScreen
 import com.example.first_week_creating_ui_kit.ui.components.atoms.MyApp2
 import com.example.first_week_creating_ui_kit.ui.components.molecules.ShowCardCommunity
 import com.example.first_week_creating_ui_kit.ui.components.molecules.ShowCardMeeting
@@ -14,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
-                ShowCardMeeting()
+                RootScreen()
             }
         }
     }
